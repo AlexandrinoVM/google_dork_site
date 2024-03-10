@@ -10,11 +10,22 @@ urlbtn.addEventListener('click',()=>{
     window.open(destino)
 })
 let url_search = ''
-customize_element.addEventListener('click',function(){
+
+inputs = document.querySelectorAll("#customize-content > input")
+
+inputs.forEach(e => {
+    console.log("a")
+    e.oninput = () => {generateURL()}
+});
+
+function generateURL() {
     inp = document.getElementsByTagName('input')
-    
+
+    if(url.value != ""){
+        url.value = ""
+    }
    
-    for(let i =0 ;i< inp.length-1;i++){
+    for(let i =0 ;i< inp.length;i++){
         if(inp[i].value != "" && inp[i].value != "customize" && inp[i].value != "search" ){
                 a.push(inp[i].name + inp[i].value)
                 
@@ -24,7 +35,7 @@ customize_element.addEventListener('click',function(){
     }
     
     url.value = a_string
-    
-})
+    a = []
+}
 
 
