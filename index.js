@@ -14,7 +14,7 @@ let url_search = ''
 inputs = document.querySelectorAll("#customize-content > input")
 
 inputs.forEach(e => {
-    console.log("a")
+    console.log(e.value)
     e.oninput = () => {generateURL()}
 });
 
