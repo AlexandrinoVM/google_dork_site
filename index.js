@@ -12,7 +12,7 @@ urlbtn.addEventListener('click',()=>{
 })
 
 
-inputs = document.querySelectorAll("#customize-content > input")
+inputs = document.querySelectorAll("#customize-content > input[type=text]")
 
 inputs.forEach(e => {
    
@@ -21,7 +21,8 @@ inputs.forEach(e => {
 });
 
 function generateURL() {
-    inp = document.getElementsByTagName('input')
+    inp = document.querySelectorAll('#customize-content > input[type=text]')
+    inp_checkbox = document.querySelectorAll('#customize-content > input[type=checkbox]')
     count = 0
     if(url.value != ""){
         url.value = ""
@@ -29,9 +30,22 @@ function generateURL() {
    
     for(let i =0 ;i< inp.length;i++){
         if(inp[i].value != "" && inp[i].value != "customize" && inp[i].value != "search" ){
+            if(inp_checkbox[i].checked == true){
+                a.push("-"+inp[i].name + inp[i].value)
+                count ++ 
+                a_string = a.join(' ')
+            }
+            else if(inp_checkbox[i].checked == false)
+                if(inp[i].name.charAt(0) == '-'){
+                    a.push(inp[i].name.substring(1) + inp[i].value)
+                    count ++ 
+                    a_string = a.join(' ')
+                }
+                else{
                 a.push(inp[i].name + inp[i].value)
                 count ++ 
                 a_string = a.join(' ') 
+                }
             }
         }
     if(isEmpty(count)){
